@@ -12,7 +12,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.ToTable("Category");
 
-        builder.HasKey(x => x.Id);
+        builder.HasKey(x=>x.Id);
 
         builder.Property(x => x.Id)
             .HasConversion(value => value!.Value,

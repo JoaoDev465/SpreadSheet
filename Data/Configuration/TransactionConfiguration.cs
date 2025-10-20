@@ -16,8 +16,6 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transactions>
 
         builder.Property(x => x.Id)
             .HasColumnName("Id")
-            .HasConversion(value => value!.Value,
-            value => new TransactionId(value))
             .ValueGeneratedOnAdd();
 
         builder.Property(x => x.Description)
@@ -29,13 +27,13 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transactions>
 
         builder.Property(x => x.CreatedAt)
             .HasColumnName("CreatedAT")
-            .HasColumnType("datetime()")
+            .HasColumnType("DATETIME")
             .HasConversion(value => value.Value,
                 value => new CreatedAt(value));
 
         builder.Property(x => x.SystemDate)
             .HasColumnName("SystemDate")
-            .HasColumnType("datetime()")
+            .HasColumnType("DATETIME")
             .HasConversion(value => value.Value,
                 value => new SystemDate(value));
 
@@ -52,13 +50,11 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transactions>
 
         builder.Property(x => x.CategoryId)
             .HasColumnName("CategoryId")
-            .HasColumnType("INTEGER")
-            .HasConversion(value => value.Value,
-                value => new CategoryId(value));
+            .HasColumnType("int");
 
-        builder.HasOne(x => x.Category)
-            .WithOne(x => x.Transaction)
-            .HasForeignKey<Transactions>(x => x.CategoryId)
+    builder.HasOne(x => x.Category)
+            .WithMany(x=>x.Transaction)
+            .HasForeignKey(x => x.CategoryId)
             .OnDelete(DeleteBehavior.Cascade);
 
     }

@@ -4,7 +4,7 @@ using Core.Interface;
 using Core.Response;
 using Core.ValueObjects.TransactionsVO;
 
-namespace Core.UseCase;
+namespace Core.UseCase.TransactionsHandler;
 
 public class TransactionGetHandler
 {

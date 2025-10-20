@@ -24,7 +24,7 @@ public class TestTransactionAndCategory
     [Fact]
     public void TestTransactionWhenConstrcutorIsGood()
     {
-        var id = new Core.ValueObjects.TransactionsVO.TransactionId(1);
+        var id = 1;
         var description = new Description("i cell a telephone");
         var amount = new Amount(0);
         var transactiontype = TransactionType.Income;
@@ -33,7 +33,8 @@ public class TestTransactionAndCategory
         var createat = new CreatedAt(DateTime.Now);
         var categoryid = new CategoryId(1);
 
-        var trabsaction = new Transactions(id,
+        var trabsaction = new Transactions(
+            id,
             description,
             amount,
             transactionValue,
@@ -42,7 +43,6 @@ public class TestTransactionAndCategory
             createat,
             categoryid);
         
-        Assert.Equal(id.Value, trabsaction.Id.Value);
         Assert.Equal(transactiontype, trabsaction.TransactionType);
         Assert.Equal(transactionValue.Value, trabsaction.TransactionValue.Value);
         Assert.Equal(description.Value, trabsaction.Description.Value);

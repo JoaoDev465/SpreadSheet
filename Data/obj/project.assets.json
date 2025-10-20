@@ -357,6 +357,22 @@
           "build/net8.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/8.0.20": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.20"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/8.0.20": {
         "type": "package",
         "dependencies": {
@@ -1547,6 +1563,21 @@
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
+    "Microsoft.EntityFrameworkCore.InMemory/8.0.20": {
+      "sha512": "u8LzO3wZLX7F23IQkJHdq56OK2Bg+EnSD6PsotnhULLND41pUDZ9IzkitimoDraCJHT4JghpzWmm8meTh2LhVw==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore.inmemory/8.0.20",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net8.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.8.0.20.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
+      ]
+    },
     "Microsoft.EntityFrameworkCore.Relational/8.0.20": {
       "sha512": "ailC6nZmDiSJm0LVFDmacibPccm1Pvaznk4Sk9Kl/XXzCglDu6dlilbmN4gO5I2Vr6Mm1GXu03UJ6XOGyXIgEA==",
       "type": "package",
@@ -2432,37 +2463,37 @@
       "Core >= 1.0.0",
       "Microsoft.EntityFrameworkcore.design >= 8.0.20",
       "Microsoft.EntityFrameworkcore.sqlite >= 8.0.20",
-      "Microsoft.EntityFrameworkcore.tools >= 8.0.20"
+      "Microsoft.EntityFrameworkcore.tools >= 8.0.20",
+      "microsoft.entityframeworkcore.inmemory >= 8.0.20"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "/home/joao/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\RiderProjects\\Math\\Data\\Data.csproj",
+      "projectUniqueName": "/home/joao/teste/SpreadSheet/Data/Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\User\\RiderProjects\\Math\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\RiderProjects\\Math\\Data\\obj\\",
+      "projectPath": "/home/joao/teste/SpreadSheet/Data/Data.csproj",
+      "packagesPath": "/home/joao/.nuget/packages/",
+      "outputPath": "/home/joao/teste/SpreadSheet/Data/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/joao/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\User\\RiderProjects\\Math\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\User\\RiderProjects\\Math\\Core\\Core.csproj"
+            "/home/joao/teste/SpreadSheet/Core/Core.csproj": {
+              "projectPath": "/home/joao/teste/SpreadSheet/Core/Core.csproj"
             }
           }
         }
@@ -2471,11 +2502,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2497,6 +2523,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.20, )"
+          },
+          "microsoft.entityframeworkcore.inmemory": {
+            "target": "Package",
+            "version": "[8.0.20, )"
           }
         },
         "imports": [
@@ -2515,7 +2545,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

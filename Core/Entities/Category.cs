@@ -9,7 +9,7 @@ public class Category
 {
     public CategoryId Id { get; set; }
     public Name Name { get; private set; }
-    public Transactions Transaction { get; set; }
+    public ICollection<Transactions> Transaction { get; set; } = new List<Transactions>();
     
     private Category(){}
 

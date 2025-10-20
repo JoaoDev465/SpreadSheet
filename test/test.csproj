@@ -25,9 +25,6 @@
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TestRepo\" />
-    <Folder Include="TestUseCase\" />
-  </ItemGroup>
+  
 
 </Project>

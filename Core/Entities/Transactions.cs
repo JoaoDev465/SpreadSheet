@@ -5,7 +5,7 @@ namespace Core.Entities;
 public class Transactions
 {
     public Transactions(
-        TransactionId id,
+        int transactionId,
         Description description,
         Amount amount,
         TransactionValue transactionValue,
@@ -14,7 +14,7 @@ public class Transactions
         CreatedAt createdAt,
         CategoryId categoryId)
     {
-        Id = id;
+        Id = transactionId;
         Description = description;
         Amount = amount;
         TransactionType = transactionType;
@@ -35,12 +35,12 @@ public class Transactions
         TransactionType = transactionType;
         SystemDate = new SystemDate(DateTime.UtcNow);
         CreatedAt = new CreatedAt(DateTime.UtcNow);
-        CategoryId = new CategoryId(Category.Id.Value);
+        CategoryId = new CategoryId(CategoryId.Value);
     }
     
     private Transactions (){}
     
-    public TransactionId? Id { get; set; }
+    public int? Id { get; set; }
     public Description? Description { get; set; }
     public Amount Amount { get; }
     public  TransactionValue TransactionValue { get; set; }
