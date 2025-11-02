@@ -1,6 +1,7 @@
 ﻿using System.Data.Common;
 using Core.Entities;
 using Core.Interface;
+using Core.Response;
 using Core.ValueObjects.CategoryVO;
 using Data.DB;
 using Microsoft.EntityFrameworkCore;
@@ -58,16 +59,40 @@ public class CategoryRepo : ICategoryRepo
         }
     }
 
-    public async Task<List<Category?>> GetAll()
+    public async Task<PagedResponse<List<Category?>>> GetAll(Category category)
     {
         try
         {
-            return await _context.Categories.ToListAsync();
+            var query =
+                _context
+                    .Categories
+                    .AsNoTracking()
+                    .Where(x => x.Id.Value == category.Id.Value)
+                    .OrderBy(x => x.Name);
+
+            var categories =
+                await
+                _context
+                    .Categories
+                    .Take((Core.Configs.Configuration.CurrentPage - 1) * Core.Configs.Configuration.PageSize)
+                    .Skip(Core.Configs.Configuration.PageSize)
+                    .ToListAsync();
+
+            var count =
+                await 
+                _context
+                    .Categories
+                    .CountAsync();
+
+            return new PagedResponse<List<Category?>>(categories, count,
+                Core.Configs.Configuration.CurrentPage,
+                Core.Configs.Configuration.PageSize);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             throw;
         }
+        
     }
 }

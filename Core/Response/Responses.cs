@@ -6,7 +6,7 @@ namespace Core.Response;
 public  class Responses<T>
 {
     [JsonConstructor] 
-    public  Responses(){}
+    public Responses(T data){}
 
     public Responses(T? data, string? message, Code? code)
     {

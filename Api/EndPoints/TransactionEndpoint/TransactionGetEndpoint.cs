@@ -23,7 +23,7 @@ public class TransactionGetEndpoint : IEndpoints
         var respose = await  handler.GetTransactionsByIdAsync(contract);
         
         return Responses<Transactions?>.Success(respose.Data).Code.IsSucces
-            ? TypedResults.Ok(respose.Data)
-            : TypedResults.NotFound("Failed to get transaction");
+            ? TypedResults.Ok("Success")
+            : TypedResults.NotFound("Bad Request");
     }
 }

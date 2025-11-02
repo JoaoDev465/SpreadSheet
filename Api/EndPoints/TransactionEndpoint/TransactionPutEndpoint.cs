@@ -23,7 +23,7 @@ public class TransactionPutEndpoint: IEndpoints
         var response = await  handler.PutTransactionsync(contract);
         
         return Responses<Transactions?> .Success(response.Data).Code.IsSucces
-            ? TypedResults.Ok("Transactions updated")
-            : TypedResults.BadRequest("Transactions update failed");
+            ? TypedResults.Ok("Success")
+            : TypedResults.BadRequest("Bad Request");
     }
 }

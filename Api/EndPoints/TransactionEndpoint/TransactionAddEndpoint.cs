@@ -25,7 +25,7 @@ public class TransactionAddEndpoint : IEndpoints
 
        return Responses<Transactions?>.Success(reponse.Data).Code.IsSucces
            ? TypedResults.Created($"/created/{contract.Id}",reponse)
-           : TypedResults.BadRequest("Failed to add transaction");
+           : TypedResults.BadRequest("Bad Request");
 
     }
 }

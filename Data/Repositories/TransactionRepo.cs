@@ -1,6 +1,9 @@
-﻿using System.Transactions;
+﻿using System.Linq.Expressions;
+using System.Transactions;
 using Core.Entities;
 using Core.Interface;
+using Core.Response;
+using Core.UseCase.TransactionsHandler;
 using Core.ValueObjects.TransactionsVO;
 using Data.DB;
 using Microsoft.EntityFrameworkCore;
@@ -37,8 +40,40 @@ public class TransactionRepo: ITransactionsRepo
         await _context.SaveChangesAsync();
     }
 
-    public async Task<List<Transactions?>> GetAll()
+    public async Task<PagedResponse<List<Transactions?>>> GetAll(TransactionId id)
     {
-        return await _context.Transactions.AsNoTracking().ToListAsync();
+        try
+        {
+            var query = 
+                _context
+                .Transactions
+                .AsNoTracking()
+                .Where(x => x.Id.Value == id.Value)
+                .OrderBy(x => x.TransactionType);
+
+            var Transactions = await
+                    _context
+                    .Transactions
+                    .Skip((Core.Configs.Configuration.CurrentPage - 1) * Core.Configs.Configuration.PageSize )
+                    .Take(Core.Configs.Configuration.PageSize)
+                    .ToListAsync();
+
+            var count = await _context.Transactions.CountAsync();
+
+            return new PagedResponse<List<Transactions?>>
+            (
+                Transactions,
+                count,
+                Core.Configs.Configuration.CurrentPage,
+                Core.Configs.Configuration.PageSize
+            );
+
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
