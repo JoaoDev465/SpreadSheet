@@ -1,4 +1,5 @@
 ﻿using Core.ValueObjects.TransactionsVO;
+using Core.ValueObjects.UserVO;
 
 namespace Core.Entities;
 
@@ -27,15 +28,18 @@ public class Transactions
     public Transactions(
         Description? description,
         TransactionValue transactionValue,
-        TransactionType transactionType)
+        TransactionType transactionType,
+        int userId,
+        CategoryId ? id)
     {
+        UserId = userId;
         Description = description;
         Amount = new Amount();
         TransactionValue = transactionValue;
         TransactionType = transactionType;
         SystemDate = new SystemDate(DateTime.UtcNow);
         CreatedAt = new CreatedAt(DateTime.UtcNow);
-        CategoryId = new CategoryId(CategoryId.Value);
+        CategoryId = id;
     }
     
     private Transactions (){}
@@ -47,8 +51,12 @@ public class Transactions
     public TransactionType TransactionType { get; set; }
     public SystemDate SystemDate { get; private set; }
     public CreatedAt CreatedAt { get; set; }
-    public CategoryId CategoryId { get; set; }
+    public CategoryId? CategoryId { get; set; }
     public Category? Category { get; set; }
+
+    public User User { get; set; }
+
+    public int UserId { get; set; }
 
     public bool IsExpensive() => TransactionType == TransactionType.Expense;
     public bool IsIncome() => TransactionType == TransactionType.Income;

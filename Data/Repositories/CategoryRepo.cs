@@ -3,6 +3,7 @@ using Core.Entities;
 using Core.Interface;
 using Core.Response;
 using Core.ValueObjects.CategoryVO;
+using Core.ValueObjects.TransactionsVO;
 using Data.DB;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,13 +30,14 @@ public class CategoryRepo : ICategoryRepo
         }
     }
 
-    public async  Task Putasync(Category category)
+    public async  Task Putasync(int id,Category category)
     {
         try
         {
-            await _context.Categories.FirstAsync(x => x.Id.Value == category.Id.Value);
-            await _context.AddAsync(category);
+           await _context.Categories.FirstOrDefaultAsync(x => x.Id == new CategoryId(id));
+             _context.Update(category);
             await _context.SaveChangesAsync();
+            
         }
         catch (DbException e)
         {
@@ -45,12 +47,12 @@ public class CategoryRepo : ICategoryRepo
         
     }
 
-    public async Task<Category?> GetById(Id id)
+    public async Task<Category?> GetById(int id)
     {
         try
         {
             return await _context.Categories.AsNoTracking()
-                .FirstAsync(x => x.Id.Value == id.Value);
+                .FirstOrDefaultAsync(x => x.Id == new CategoryId(id));
         }
         catch (DbException e)
         {
@@ -59,7 +61,7 @@ public class CategoryRepo : ICategoryRepo
         }
     }
 
-    public async Task<PagedResponse<List<Category?>>> GetAll(Category category)
+    public async Task<PagedResponse<List<Category?>>> GetAll(Id category)
     {
         try
         {
@@ -67,7 +69,7 @@ public class CategoryRepo : ICategoryRepo
                 _context
                     .Categories
                     .AsNoTracking()
-                    .Where(x => x.Id.Value == category.Id.Value)
+                    .Where(x => x.Id.Value == category.Value)
                     .OrderBy(x => x.Name);
 
             var categories =

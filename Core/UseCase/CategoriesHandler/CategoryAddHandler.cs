@@ -20,7 +20,7 @@ public class CategoryAddHandler
         var category =   new Category(name: new Name(contract.Name),
             type: contract.Type);
 
-        await _repositorie.Putasync(category);
+        await _repositorie.AddAsync(category);
         
         return Responses<Category?>.Success(category);
     }

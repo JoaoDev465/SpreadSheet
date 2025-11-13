@@ -7,6 +7,7 @@ public class TransactionContract
 {
      
     public int Id { get; set; }
+    public int CategoryId { get; set; }
     public string? Description { get; set; }
     [Required(ErrorMessage = "Este campo é obrigatório")]
     [MoneyValidation(3000.00)]

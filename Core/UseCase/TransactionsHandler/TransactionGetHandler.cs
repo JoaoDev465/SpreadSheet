@@ -17,11 +17,26 @@ public class TransactionGetHandler
 
     public async Task<Responses<Transactions?>> GetTransactionsByIdAsync(TransactionContract contract)
     {
-        var id = new TransactionId(contract.Id);
-        if(id.Value == null)
+        
+        var id = contract.Id;
+        if(id == null)
             return Responses<Transactions?>.NotFound(null);
-        var transaction = await   _repositorie.GetById(new TransactionId(contract.Id));
+        var transaction = await   _repositorie.GetById(contract.Id);
 
         return Responses<Transactions?>.Success(transaction);
+    }
+
+    public async Task<Responses<List<Transactions?>>> GetAllTransactions(ProfileContract contract)
+    {
+        var id = contract.Id;
+
+        if (id == null)
+        {
+            return (PagedResponse<List<Transactions?>>)Responses<List<Transactions?>>.NotFound(null);
+        }
+
+        var transactions = await _repositorie.GetAll(id);
+
+        return PagedResponse<List<Transactions?>>.Success(transactions.Data);
     }
 }

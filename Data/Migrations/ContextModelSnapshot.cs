@@ -42,7 +42,7 @@ namespace Data.Migrations
                         .HasColumnType("INTEGER")
                         .HasColumnName("Id");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int")
                         .HasColumnName("CategoryId");
 
@@ -67,11 +67,34 @@ namespace Data.Migrations
                         .HasColumnType("decimal")
                         .HasColumnName("TransactionValue");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Transactions", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("UserId");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("UserEmail");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Core.Entities.Transactions", b =>
@@ -79,15 +102,27 @@ namespace Data.Migrations
                     b.HasOne("Core.Entities.Category", "Category")
                         .WithMany("Transaction")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Core.Entities.User", "User")
+                        .WithMany("TransactionsList")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Core.Entities.Category", b =>
                 {
                     b.Navigation("Transaction");
+                });
+
+            modelBuilder.Entity("Core.Entities.User", b =>
+                {
+                    b.Navigation("TransactionsList");
                 });
 #pragma warning restore 612, 618
         }

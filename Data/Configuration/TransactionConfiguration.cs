@@ -49,6 +49,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transactions>
                 value => (TransactionType)value);
 
         builder.Property(x => x.CategoryId)
+            .HasConversion(value => value.Value,
+                value => new CategoryId(value))
             .HasColumnName("CategoryId")
             .HasColumnType("int");
 

@@ -5,6 +5,7 @@ using Core.Interface;
 using Core.Response;
 using Core.UseCase.TransactionsHandler;
 using Core.ValueObjects.TransactionsVO;
+using Core.ValueObjects.UserVO;
 using Data.DB;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,35 +26,37 @@ public class TransactionRepo: ITransactionsRepo
     }
     
 
-    public async Task<Transactions?> GetById(TransactionId  id)
+    public async Task<Transactions?> GetById(int  id)
     {
-        return await _context.Transactions.AsNoTracking()
-            .FirstOrDefaultAsync(x=>x.Id.Value == id.Value);
+       return  await _context.Transactions.AsNoTracking()
+           .Include(x=>x.User)
+           .Where(x=>x.UserId == id )
+            .FirstOrDefaultAsync();
     }
 
-    public async Task PutAsync(Transactions transaction)
+    public async Task PutAsync(int id,Transactions transaction)
     {
         await _context.Transactions
-            .FirstOrDefaultAsync(x => x.Id.Value == transaction.Id.Value);
+            .FirstAsync(x => x.Id == id);
 
         _context.Update(transaction);
         await _context.SaveChangesAsync();
     }
 
-    public async Task<PagedResponse<List<Transactions?>>> GetAll(TransactionId id)
+    public async Task<PagedResponse<List<Transactions?>>> GetAll(int id)
     {
+        
         try
         {
             var query = 
                 _context
                 .Transactions
                 .AsNoTracking()
-                .Where(x => x.Id.Value == id.Value)
+                .Include(x=>x.User)
+                .Where(x=>x.UserId ==  id )
                 .OrderBy(x => x.TransactionType);
 
-            var Transactions = await
-                    _context
-                    .Transactions
+            var transactions = await query
                     .Skip((Core.Configs.Configuration.CurrentPage - 1) * Core.Configs.Configuration.PageSize )
                     .Take(Core.Configs.Configuration.PageSize)
                     .ToListAsync();
@@ -62,7 +65,7 @@ public class TransactionRepo: ITransactionsRepo
 
             return new PagedResponse<List<Transactions?>>
             (
-                Transactions,
+                transactions,
                 count,
                 Core.Configs.Configuration.CurrentPage,
                 Core.Configs.Configuration.PageSize

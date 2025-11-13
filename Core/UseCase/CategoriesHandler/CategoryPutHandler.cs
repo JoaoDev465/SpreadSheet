@@ -17,7 +17,7 @@ public class CategoryPutHandler
 
     public async Task<Responses<Category?>> PutCategoryAsync(CategoryContract contract)
     {
-        var id = new Id(contract.Id).Value;
+        var id = contract.Id;
         if (id == null)
         {
             return Responses<Category?>.NotFound(null);
@@ -26,7 +26,7 @@ public class CategoryPutHandler
         var category = new Category(name: new Name(contract.Name),
             type: contract.Type);
 
-        await _repositorie.Putasync(category);
+        await _repositorie.Putasync(id,category);
         
         return Responses<Category?>.Success(category);
     }

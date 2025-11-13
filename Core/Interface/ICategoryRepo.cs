@@ -7,7 +7,7 @@ namespace Core.Interface;
 public interface ICategoryRepo
 {
     public Task AddAsync(Category category);
-    public Task Putasync(Category category);
-    public Task<Category?> GetById(Id id);
-    public Task<PagedResponse<List<Category?>>> GetAll(Category category);
+    public Task Putasync(int id,Category category);
+    public Task<Category?> GetById(int id);
+    public Task<PagedResponse<List<Category?>>> GetAll(Id CategoryId);
 }

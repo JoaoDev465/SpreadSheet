@@ -8,7 +8,7 @@ public class PagedResponse<TData> : Responses<TData>
 {
     [JsonConstructor]
     public PagedResponse
-    (TData data,
+    (TData? data,
         int totalCount,
         int currentPage = 1,
         int pageSize = Configuration.PageSize) : base(data)
@@ -20,7 +20,7 @@ public class PagedResponse<TData> : Responses<TData>
     }
     
     public PagedResponse
-    (TData data,
+    (TData? data,
         string message,
         Code code):base(data,message,code)
     {

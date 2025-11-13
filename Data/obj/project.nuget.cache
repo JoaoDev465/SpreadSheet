@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "7XvxeUhhU3E=",
+  "dgSpecHash": "0g9aOcHZodc=",
   "success": true,
   "projectFilePath": "/home/joao/teste/SpreadSheet/Data/Data.csproj",
   "expectedPackageFiles": [
     "/home/joao/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.3.0/microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/microsoft.aspnetcore.http.features/2.3.0/microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
     "/home/joao/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "/home/joao/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.3/microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "/home/joao/.nuget/packages/microsoft.codeanalysis.common/4.5.0/microsoft.codeanalysis.common.4.5.0.nupkg.sha512",
@@ -32,6 +34,7 @@
     "/home/joao/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
     "/home/joao/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/home/joao/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/joao/.nuget/packages/questpdf/2025.7.4/questpdf.2025.7.4.nupkg.sha512",
     "/home/joao/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.6/sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "/home/joao/.nuget/packages/sqlitepclraw.core/2.1.6/sqlitepclraw.core.2.1.6.nupkg.sha512",
     "/home/joao/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.6/sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",
@@ -49,6 +52,7 @@
     "/home/joao/.nuget/packages/system.reflection.metadata/6.0.1/system.reflection.metadata.6.0.1.nupkg.sha512",
     "/home/joao/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/joao/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
+    "/home/joao/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
     "/home/joao/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
   ],
   "logs": []
